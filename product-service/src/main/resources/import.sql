@@ -1,0 +1,10 @@
+insert into products (name, price, created_at) values ('Sauce - Soya, Light', '0.73', '2020-05-18');
+insert into products (name, price, created_at) values ('Pepper - Red Thai', '2.06', '2019-11-19');
+insert into products (name, price, created_at) values ('Table Cloth 90x90 White', '2.81', '2019-05-24');
+insert into products (name, price, created_at) values ('Lobster - Canned Premium', '6.72', '2019-11-27');
+insert into products (name, price, created_at) values ('Broccoli - Fresh', '1.45', '2019-06-09');
+insert into products (name, price, created_at) values ('Apple - Custard', '0.70', '2019-08-15');
+insert into products (name, price, created_at) values ('Flavouring - Raspberry', '2.85', '2020-02-02');
+insert into products (name, price, created_at) values ('Sprouts - Peppercress', '1.78', '2020-03-02');
+insert into products (name, price, created_at) values ('Fennel - Seeds', '6.05', '2019-06-04');
+insert into products (name, price, created_at) values ('Onions - Green', '7.34', '2020-04-19');
