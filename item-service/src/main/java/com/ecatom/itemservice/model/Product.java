@@ -1,4 +1,4 @@
-package com.ecatom.item.model;
+package com.ecatom.itemservice.model;
 
 import java.util.Date;
 

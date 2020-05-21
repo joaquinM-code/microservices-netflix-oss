@@ -1,10 +1,9 @@
-package com.ecatom.item.controllers;
+package com.ecatom.itemservice.controllers;
 
-import com.ecatom.item.model.Item;
-import com.ecatom.item.model.Product;
-import com.ecatom.item.services.ItemServiceInterface;
+import com.ecatom.itemservice.model.Item;
+import com.ecatom.itemservice.model.Product;
+import com.ecatom.itemservice.services.ItemServiceInterface;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/item")
 public class ItemController {
 
 //    @Qualifier("itemServiceFeign") alternative way to make a service @Primary

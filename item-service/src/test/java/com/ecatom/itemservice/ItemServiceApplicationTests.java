@@ -1,4 +1,4 @@
-package com.ecatom.item;
+package com.ecatom.itemservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

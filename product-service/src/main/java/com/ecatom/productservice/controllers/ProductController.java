@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/products")
+//@RequestMapping("/products") not necessary mapped with Zuul
 public class ProductController {
     private final ProductServiceInterface productService;
     @Value("${server.port}")
@@ -39,9 +39,9 @@ public class ProductController {
 //            throw new Exception("Unable to load product");//Simulated error to test Hystrix
 //        }
 
-        //Testing hystrix with latency
+        //Testing hystrix and Zuul with latency
         //By default Hystrix timeout is 1000ms but can be configured
-        Thread.sleep(2000L);
+//        Thread.sleep(2000L);
 
 
 

@@ -1,4 +1,4 @@
-package com.ecatom.item.model;
+package com.ecatom.itemservice.model;
 
 public class Item {
 

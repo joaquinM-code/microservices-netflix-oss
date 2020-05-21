@@ -1,7 +1,7 @@
-package com.ecatom.item.services;
+package com.ecatom.itemservice.services;
 
-import com.ecatom.item.model.Item;
-import com.ecatom.item.model.Product;
+import com.ecatom.itemservice.model.Item;
+import com.ecatom.itemservice.model.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import java.util.Arrays;
@@ -22,7 +22,7 @@ public class ItemServiceRestTemplate implements ItemServiceInterface{
     @Override
     public List<Item> findAll() {
         //Here we can use the name of the service because is load-balanced
-        List<Product> products = Arrays.asList(restClient.getForObject("http://product-service/products/all" , Product[].class));
+        List<Product> products = Arrays.asList(restClient.getForObject("http://product-service/all" , Product[].class));
         return products
                 .stream()
                 .map(product ->
@@ -38,7 +38,7 @@ public class ItemServiceRestTemplate implements ItemServiceInterface{
         Map<String, String> pathVariables = new HashMap<>();
         pathVariables.put("id" , id.toString());
 
-        Product product = restClient.getForObject("http://product-service/products/{id}", Product.class, pathVariables);
+        Product product = restClient.getForObject("http://product-service/{id}", Product.class, pathVariables);
         return new Item(product , amount);
     }
 }

@@ -1,7 +1,7 @@
-package com.ecatom.item.services;
+package com.ecatom.itemservice.services;
 
-import com.ecatom.item.clients.ProductRestClient;
-import com.ecatom.item.model.Item;
+import com.ecatom.itemservice.clients.ProductRestClient;
+import com.ecatom.itemservice.model.Item;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
