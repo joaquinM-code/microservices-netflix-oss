@@ -1,6 +1,7 @@
-package com.ecatom.productservice.model;
+package com.ecatom.commons.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,13 +19,14 @@ public class Product implements Serializable {
     private String name;
     private Double price;
 
+
     @Column(name = "created_at")
     @Temporal(TemporalType.DATE)//Specifies the time format (DATE, TIME or TIMESTAMP for both)
-    @DateTimeFormat(pattern = "m-dd-yyyy")
     private Date createdAt;
 
     @Transient //Indicates that this attribute  is not persisted in the DB
     //Configuration line to visualize the used port by Ribbon load balancer
+    @Value("${server.port}")
     private Integer port;
 
     public Long getId() {
@@ -65,5 +67,11 @@ public class Product implements Serializable {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    //Creates a Date before persisting the info
+    @PrePersist
+    void createdAt(){
+        this.createdAt = new Date();
     }
 }

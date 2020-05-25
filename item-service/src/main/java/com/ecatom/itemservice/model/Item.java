@@ -1,5 +1,7 @@
 package com.ecatom.itemservice.model;
 
+import com.ecatom.commons.model.Product;
+
 public class Item {
 
     private Product product;

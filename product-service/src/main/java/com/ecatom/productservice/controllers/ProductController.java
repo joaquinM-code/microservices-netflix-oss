@@ -1,34 +1,25 @@
 package com.ecatom.productservice.controllers;
 
 
-import com.ecatom.productservice.model.Product;
+import com.ecatom.commons.model.Product;
 import com.ecatom.productservice.services.ProductServiceInterface;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 //@RequestMapping("/products") not necessary mapped with Zuul
 public class ProductController {
     private final ProductServiceInterface productService;
-    @Value("${server.port}")
-    private Integer port;
-
     public ProductController(ProductServiceInterface productService) {
         this.productService = productService;
     }
 
     @GetMapping("/all")
-    public List<Product> listAll(){
-        return productService.findAll().stream().map(product -> {
-            product.setPort(port);
-            return product;
-        }).collect(Collectors.toList());
+    public List<Product> listAll() {
+        return productService.findAll();
     }
 
     @GetMapping("/{id}")
@@ -43,10 +34,40 @@ public class ProductController {
         //By default Hystrix timeout is 1000ms but can be configured
 //        Thread.sleep(2000L);
 
+        return productService.findById(id);
 
+    }
 
-        Product product = productService.findById(id);
-        product.setPort(port);
-        return product;
+    @PostMapping("/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product createProduct(@RequestBody Product product){
+        return productService.save(product);
+    }
+
+    @PutMapping("edit/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public Product editProduct(@RequestBody Product product , @PathVariable Long id){
+        Product productToEdit = productService.findById(id);
+        if(productToEdit != null){
+            productToEdit.setName(product.getName());
+            productToEdit.setPrice(product.getPrice());
+            return productService.save(productToEdit);
+        }else{
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Product not found");
+        }
+
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteProductById(@PathVariable Long id){
+        try{
+            productService.deleteById(id);
+        }catch (Exception e){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Product not found");
+        }
+
     }
 }

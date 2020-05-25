@@ -1,9 +1,8 @@
 package com.ecatom.itemservice.clients;
 
-import com.ecatom.itemservice.model.Product;
+import com.ecatom.commons.model.Product;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,4 +14,13 @@ public interface ProductRestClient {
 
     @GetMapping("/{id}")
     Product listProductById(@PathVariable Long id);
+
+    @PostMapping("/create")
+    Product createProduct(@RequestBody Product product);
+
+    @PutMapping("/edit/{id}")
+    Product updateProduct(@RequestBody Product product, @PathVariable Long id);
+
+    @DeleteMapping("/delete/{id}")
+    void deleteById(@PathVariable Long id);
 }

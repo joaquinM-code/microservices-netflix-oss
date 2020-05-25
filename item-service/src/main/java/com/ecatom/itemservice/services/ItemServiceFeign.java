@@ -1,5 +1,6 @@
 package com.ecatom.itemservice.services;
 
+import com.ecatom.commons.model.Product;
 import com.ecatom.itemservice.clients.ProductRestClient;
 import com.ecatom.itemservice.model.Item;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,20 @@ public class ItemServiceFeign implements ItemServiceInterface {
     public Item findById(Long id, Integer amount) {
         amount = amount != null ? amount : 1;
         return new Item(feignClient.listProductById(id), amount);
+    }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return feignClient.createProduct(product);
+    }
+
+    @Override
+    public Product updateProduct(Product product, Long id) {
+        return feignClient.updateProduct(product, id);
+    }
+
+    @Override
+    public void deleteProductById(Long id) {
+        feignClient.deleteById(id);
     }
 }
