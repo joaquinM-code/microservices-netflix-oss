@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
-@RepositoryRestResource(path="users")
+@RepositoryRestResource(path="user")
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
     //using this interface we can create personalized method using keywords like(findBy , And , desired Attribute)
     //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods

@@ -67,10 +67,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Bean
     public JwtTokenStore tokenStore() {
+        //A TokenStore implementation that just READS DATA FROM THE TOKENS themselves.
+        // Not really a store since it never persists anything, and methods like getAccessToken(OAuth2Authentication) always return null.
+        // But nevertheless a useful tool since it translates access tokens to and from authentications. Use this wherever a TokenStore is needed,
+        // but remember to use the same JwtAccessTokenConverter instance (or one with the same verifier) as was used when the tokens were minted.
         return new JwtTokenStore(accessTokenConverter());
     }
 
     //This bean creates the token and adds the signature to it
+    //Helper that translates between JWT encoded token values and OAuth authentication information (in both directions).
+    // Also acts as a TokenEnhancer when tokens are granted.
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
