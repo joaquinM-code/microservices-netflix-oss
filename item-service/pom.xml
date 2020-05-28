@@ -22,7 +22,7 @@
     <dependencies>
         <dependency>
             <groupId>com.ecatom</groupId>
-            <artifactId>commons</artifactId>
+            <artifactId>product-commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
